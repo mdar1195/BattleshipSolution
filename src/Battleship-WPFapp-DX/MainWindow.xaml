@@ -7,7 +7,7 @@
     Title="MainWindow" Height="600" Width="1000">
     <Grid>
         <dx:DXTabControl Margin="27,27,27,27">
-            <dx:DXTabItem Header="My Grid">
+            <dx:DXTabItem Header="Battelfield">
                 <Grid Name="BattlefieldGrid" Background="AliceBlue" Margin="153,31,154,3" ShowGridLines="True">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="12*" />
@@ -167,9 +167,6 @@
                     <Button Grid.Column="9" Grid.Row="10" Click="Button_Click" Background="AliceBlue"/>
                     <Button Grid.Column="10" Grid.Row="10" Click="Button_Click" Background="AliceBlue"/>
                 </Grid>
-            </dx:DXTabItem>
-            <dx:DXTabItem Header="Enemy's Grid">
-                <Grid Background="AliceBlue" ShowGridLines="True"/>
             </dx:DXTabItem>
         </dx:DXTabControl>
     </Grid>

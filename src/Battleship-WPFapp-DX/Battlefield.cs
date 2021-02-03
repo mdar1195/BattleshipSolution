@@ -99,6 +99,9 @@ namespace Battleship_WPFapp_DX
             AddASubmarine();
             AddASmallAssaultShip();
         }
+        /// <summary>
+        /// This method will initialize coordinates for all ships based on what is on the Grid.
+        /// </summary>
         public void InitializeCoordinates()
         {
             foreach (UIElement element in _battlefieldGrid.Children)
@@ -157,6 +160,7 @@ namespace Battleship_WPFapp_DX
         public void AttackAtCoordinate(int row, int column)
         {
             ResultOfAttack result = _battleshipGrid.Attack(new Coordinate(row, column));
+            Button btn = (Button)GetElementInGridPosition(column, row);
             if (result == ResultOfAttack.Hit)
             {
                 MessageBox.Show("It's a hit");
@@ -173,6 +177,8 @@ namespace Battleship_WPFapp_DX
             {
                 MessageBox.Show("It's a miss");
             }
+            btn.Content = 'X';
+            btn.IsEnabled = false;
         }
     }
 }
