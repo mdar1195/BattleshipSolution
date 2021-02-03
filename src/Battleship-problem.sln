@@ -4,10 +4,19 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 16.0.30503.244
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Battleship-problem-consoleApp", "Battleship-problem-consoleApp\Battleship-problem-consoleApp.csproj", "{559396B1-5A04-4441-929A-1059D2B88DD7}"
+	ProjectSection(ProjectDependencies) = postProject
+		{F71CBD7D-4FB4-4485-98A7-AB7C087AA2CF} = {F71CBD7D-4FB4-4485-98A7-AB7C087AA2CF}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BattleshipGrid-UnitTests", "BattleshipGrid-unitTests\BattleshipGrid-UnitTests.csproj", "{AC5ECC4A-2D2A-4509-B099-12CF34DF4559}"
+	ProjectSection(ProjectDependencies) = postProject
+		{F71CBD7D-4FB4-4485-98A7-AB7C087AA2CF} = {F71CBD7D-4FB4-4485-98A7-AB7C087AA2CF}
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Battleship-problem-WPFApp", "Battleship-problem-WPFApp\Battleship-problem-WPFApp.csproj", "{50C03CBB-CEBC-4E75-96B1-A9B204B4514C}"
+	ProjectSection(ProjectDependencies) = postProject
+		{F71CBD7D-4FB4-4485-98A7-AB7C087AA2CF} = {F71CBD7D-4FB4-4485-98A7-AB7C087AA2CF}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BattleshipGrid", "BattleshipGrid\BattleshipGrid.csproj", "{F71CBD7D-4FB4-4485-98A7-AB7C087AA2CF}"
 EndProject
