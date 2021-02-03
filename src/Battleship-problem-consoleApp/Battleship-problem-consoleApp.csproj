@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <RootNamespace>Battleship_problem_consoleApp</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="BattleshipGrid">
+      <HintPath>..\BattleshipGrid\bin\Debug\BattleshipGrid.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,11 @@
+/src/packages/*
+/src/.vs/*
+/src/BattleshipGrid/obj/*
+/src/BattleshipGrid/bin/*
+/src/BattleshipGrid-UnitTests/bin/*
+/src/BattleshipGrid-UnitTests/obj/*
+/src/Battleship-problem-consoleApp/obj/*
+/src/Battleship-problem-consoleApp/bin/*
+/src/Battleship-problem-WPFApp/obj/*
+/src/Battleship-problem-WPFApp/bin/*
+/src/Battleship-problem-WPFApp/.vs/*
