@@ -22,6 +22,26 @@ namespace BattleshipGrid
         {
            
         }
+        public void SetCarrier(Carrier carrier)
+        {
+            _carrier = carrier;
+        }
+        public void SetBattleship(Battleship battleship)
+        {
+            _battleship = battleship;
+        }
+        public void SetDestroyer(Destroyer destroyer)
+        {
+            _destroyer = destroyer;
+        }
+        public void SetSubmarine(Destroyer submarine)
+        {
+            _submarine = submarine;
+        }
+        public void SetSmallAssaultShip(SmallAssaultShip smallAssaultShip)
+        {
+            _assaultShip = smallAssaultShip;
+        }
         public Fleet(Carrier carrier, Battleship battleship, Destroyer destroyer, Destroyer submarine, SmallAssaultShip assaultShip)
         {
             _carrier = carrier;

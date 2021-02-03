@@ -6,6 +6,6 @@
 /src/BattleshipGrid-UnitTests/obj/*
 /src/Battleship-problem-consoleApp/obj/*
 /src/Battleship-problem-consoleApp/bin/*
-/src/Battleship-problem-WPFApp/obj/*
-/src/Battleship-problem-WPFApp/bin/*
-/src/Battleship-problem-WPFApp/.vs/*
+/src/Battleship-WPFapp-DX/obj/*
+/src/Battleship-WPFapp-DX/bin/*
+/src/Battleship-WPFapp-DX/.vs/*
