@@ -4,11 +4,11 @@
     xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:dxco="http://schemas.devexpress.com/winfx/2008/xaml/controls" xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol" mc:Ignorable="d" 
     x:Class="Battleship_WPFapp_DX.MainWindow"
-    Title="MainWindow" Height="600" Width="1000">
+    Title="Battleship Game" Height="600" Width="1000">
     <Grid>
         <dx:DXTabControl Margin="27,27,27,27">
             <dx:DXTabItem Header="Battelfield">
-                <Grid x:Name="BattlefieldGrid" Background="AliceBlue" Margin="200,31,60,3" ShowGridLines="True">
+                <Grid x:Name="BattlefieldGrid" Background="White" Margin="280,15,60,15" ShowGridLines="True">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="12*" />
                         <RowDefinition Height="30*"/>
@@ -169,18 +169,18 @@
                 </Grid>
             </dx:DXTabItem>
         </dx:DXTabControl>
-        <Canvas x:Name="LegendCanvas" HorizontalAlignment="Left" Height="161" Margin="53,88,0,0" VerticalAlignment="Top" Width="167">
-            <Label Content="Legend:" HorizontalAlignment="Left" VerticalAlignment="Top" Height="41" Width="134" FontSize="27" FontFamily="Gabriola" Canvas.Left="10"/>
-            <Label Content="Carrier:" HorizontalAlignment="Left" VerticalAlignment="Top" Height="20" Width="70" Canvas.Left="10" Canvas.Top="42"/>
-            <Label x:Name="carrier_placeholder" HorizontalAlignment="Left" VerticalAlignment="Top" Height="20" Width="70" Canvas.Left="100" Canvas.Top="42"/>
-            <Label Content="Battleship:" HorizontalAlignment="Left" VerticalAlignment="Top" Height="20" Width="70" Canvas.Left="10" Canvas.Top="62"/>
-            <Label x:Name="battleship_placeholder" HorizontalAlignment="Left" VerticalAlignment="Top" Height="20" Width="70" Canvas.Left="100" Canvas.Top="62"/>
-            <Label Content="Destroyer:" HorizontalAlignment="Left" VerticalAlignment="Top" Height="20" Width="70" Canvas.Left="10" Canvas.Top="82"/>
-            <Label x:Name="destroyer_placeholder" HorizontalAlignment="Left" VerticalAlignment="Top" Height="20" Width="70" Canvas.Left="100" Canvas.Top="82"/>
-            <Label Content="Submarine:" HorizontalAlignment="Left" VerticalAlignment="Top" Height="20" Width="70" Canvas.Left="10" Canvas.Top="102"/>
-            <Label x:Name="submarine_placeholder" HorizontalAlignment="Left" VerticalAlignment="Top" Height="20" Width="70" Canvas.Left="100" Canvas.Top="102"/>
-            <Label Content="Assault ship:" HorizontalAlignment="Left" VerticalAlignment="Top" Height="20" Width="70" Canvas.Left="10" Canvas.Top="122"/>
-            <Label x:Name="assault_ship_placeholder" HorizontalAlignment="Left" VerticalAlignment="Top" Height="20" Width="70" Canvas.Left="100" Canvas.Top="122"/>
+        <Canvas x:Name="LegendCanvas" HorizontalAlignment="Left" Height="210" Margin="53,88,0,0" VerticalAlignment="Top" Width="188">
+            <Label Content="Legend:" HorizontalAlignment="Left" VerticalAlignment="Center" Height="41" Width="134" FontSize="27" FontFamily="Gabriola" Canvas.Left="10"/>
+            <Label Content="Carrier:" HorizontalAlignment="Left" VerticalAlignment="Top" Height="25" Width="70" Canvas.Left="10" Canvas.Top="47"/>
+            <Label x:Name="carrier_placeholder" FontSize="18" HorizontalAlignment="Left" VerticalAlignment="Center" Height="30" Width="70" Canvas.Left="100" Canvas.Top="42"/>
+            <Label Content="Battleship:" HorizontalAlignment="Left" VerticalAlignment="Bottom" Height="25" Width="70" Canvas.Left="10" Canvas.Top="77"/>
+            <Label x:Name="battleship_placeholder" FontSize="18" HorizontalAlignment="Left" VerticalAlignment="Center" Height="30" Width="70" Canvas.Left="100" Canvas.Top="72"/>
+            <Label Content="Destroyer:" HorizontalAlignment="Left" VerticalAlignment="Bottom" Height="25" Width="70" Canvas.Left="10" Canvas.Top="107"/>
+            <Label x:Name="destroyer_placeholder" FontSize="18" HorizontalAlignment="Left" VerticalAlignment="Center" Height="30" Width="70" Canvas.Left="100" Canvas.Top="102"/>
+            <Label Content="Submarine:" HorizontalAlignment="Left" VerticalAlignment="Bottom" Height="25" Width="70" Canvas.Left="10" Canvas.Top="137"/>
+            <Label x:Name="submarine_placeholder" FontSize="18" HorizontalAlignment="Left" VerticalAlignment="Center" Height="30" Width="70" Canvas.Left="100" Canvas.Top="132"/>
+            <Label Content="Assault ship:" HorizontalAlignment="Left" VerticalAlignment="Bottom" Height="25" Width="70" Canvas.Left="10" Canvas.Top="167"/>
+            <Label x:Name="assault_ship_placeholder" FontSize="18" HorizontalAlignment="Left" VerticalAlignment="Center" Height="30" Width="70" Canvas.Left="100" Canvas.Top="162"/>
         </Canvas>
     </Grid>
 </dx:ThemedWindow>
