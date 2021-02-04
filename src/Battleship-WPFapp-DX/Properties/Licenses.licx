@@ -4,3 +4,5 @@ DevExpress.Xpf.Grid.LookUp.LookUpEdit, DevExpress.Xpf.Grid.v20.2, Version=20.2.5
 DevExpress.Xpf.Carousel.CarouselPanel, DevExpress.Xpf.Carousel.v20.2, Version=20.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a
 DevExpress.Xpf.Editors.DateEdit, DevExpress.Xpf.Core.v20.2, Version=20.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a
 DevExpress.Xpf.Spreadsheet.SpreadsheetControl, DevExpress.Xpf.Spreadsheet.v20.2, Version=20.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a
+DevExpress.Xpf.Controls.Book, DevExpress.Xpf.Controls.v20.2, Version=20.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a
+DevExpress.Xpf.LayoutControl.GroupBox, DevExpress.Xpf.LayoutControl.v20.2, Version=20.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a

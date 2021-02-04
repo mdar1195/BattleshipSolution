@@ -24,9 +24,10 @@ namespace Battleship_WPFapp_DX
         public MainWindow()
         {
             InitializeComponent();
-            _battlefield = new Battlefield(BattlefieldGrid);
+            _battlefield = new Battlefield(BattlefieldGrid, LegendCanvas);
             _battlefield.AddTheFleetToTheBattlefield();
             _battlefield.InitializeBattleshipGrid();
+            _battlefield.InitializeTheLegend();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
