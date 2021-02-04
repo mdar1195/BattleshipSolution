@@ -20,7 +20,7 @@ namespace BattleshipGrid
             }
             return false;
         }
-
+        // returns true if the ship has sink and false otherwise
         public bool DidSank(Coordinate point)
         {
             bool isPresent = false;
@@ -37,7 +37,7 @@ namespace BattleshipGrid
             }
             return IsSank();
         }
-
+        //returns true if the ship is completetly hit and false otherwise
         public bool IsSank()
         {
             if (_coordinates.Count == nrOfHits)

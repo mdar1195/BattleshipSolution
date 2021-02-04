@@ -8,7 +8,6 @@ namespace BattleshipGrid
 {
     public class Destroyer : Ship
     {
-        //3 holes - 3 coordinates
         public Destroyer(List<Coordinate> coordinates)
         {
             _coordinates = coordinates;

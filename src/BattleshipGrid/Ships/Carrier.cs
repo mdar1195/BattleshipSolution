@@ -8,8 +8,6 @@ namespace BattleshipGrid
 {
     public class Carrier : Ship
     {
-        //5 holes = 5 coordinates
-
         public Carrier(List<Coordinate> coordinates)
         {
             _coordinates = coordinates;
