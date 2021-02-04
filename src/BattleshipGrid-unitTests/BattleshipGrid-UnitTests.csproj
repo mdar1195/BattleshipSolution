@@ -67,7 +67,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BattleshipGridTests.cs" />
-    <Compile Include="UnitTest_concrete_instantiation.cs" />
+    <Compile Include="BattleshipGridTests_ConcreteInstantiation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -7,14 +7,12 @@ using BattleshipGrid;
 namespace BattleshipGrid_unitTests
 {
     [TestClass]
-    public class UnitTest_concrete_instantiation
+    public class BattleshipGridTests_ConcreteInstantiation
     {
         private BattleshipGrid.BattleshipGrid _battleshipGrid;
         private void InitializeTheBattleshipGrid()
         {
             Ship[] ships = new Ship[5];
-
-            List<Coordinate>[] shipsCoordinates = new List<Coordinate>[5];
 
             List<Coordinate> carrierCoordinates = new List<Coordinate>(5);
             carrierCoordinates.Add(new Coordinate(1, 1));
