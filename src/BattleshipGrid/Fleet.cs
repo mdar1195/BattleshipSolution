@@ -18,30 +18,6 @@ namespace BattleshipGrid
         private Submarine _submarine;
         private SmallAssaultShip _assaultShip;
 
-        public Fleet() : base()
-        {
-           
-        }
-        public void SetCarrier(Carrier carrier)
-        {
-            _carrier = carrier;
-        }
-        public void SetBattleship(Battleship battleship)
-        {
-            _battleship = battleship;
-        }
-        public void SetDestroyer(Destroyer destroyer)
-        {
-            _destroyer = destroyer;
-        }
-        public void SetSubmarine(Submarine submarine)
-        {
-            _submarine = submarine;
-        }
-        public void SetSmallAssaultShip(SmallAssaultShip smallAssaultShip)
-        {
-            _assaultShip = smallAssaultShip;
-        }
         public Fleet(Carrier carrier, Battleship battleship, Destroyer destroyer, Submarine submarine, SmallAssaultShip assaultShip)
         {
             _carrier = carrier;
