@@ -29,7 +29,6 @@ namespace Battleship_WPFapp_DX
 
         private Grid _battlefieldGrid;
         private Canvas _legendCanvas;
-        private Ship[] _ships = new Ship[5];
         private List<Coordinate> _carrierCoordinates = new List<Coordinate>(5);
         private List<Coordinate> _battleshipCoordinates = new List<Coordinate>(4);
         private List<Coordinate> _destroyerCoordinates = new List<Coordinate>(3);
@@ -189,15 +188,20 @@ namespace Battleship_WPFapp_DX
         public void InitializeBattleshipGrid()
         {
             InitializeCoordinates();
+            Carrier carrier;
+            Battleship battleship;
+            Destroyer destroyer;
+            Submarine submarine;
+            SmallAssaultShip assaultShip;
 
             ShipFactoryCreator factory = new ShipFactoryCreator();
-            _ships[0] = (Ship)factory.CreateShip(ShipType.Carrier, _carrierCoordinates);
-            _ships[1] = (Ship)factory.CreateShip(ShipType.Battleship, _battleshipCoordinates);
-            _ships[2] = (Ship)factory.CreateShip(ShipType.Destroyer, _destroyerCoordinates);
-            _ships[3] = (Ship)factory.CreateShip(ShipType.Submarine, _submarineCoordinates);
-            _ships[4] = (Ship)factory.CreateShip(ShipType.SmallAssaultShip, _smallAssaultShipCoordinates);
+            carrier = (Carrier)factory.CreateShip(ShipType.Carrier, _carrierCoordinates);
+            battleship = (Battleship)factory.CreateShip(ShipType.Battleship, _battleshipCoordinates);
+            destroyer = (Destroyer)factory.CreateShip(ShipType.Destroyer, _destroyerCoordinates);
+            submarine = (Submarine)factory.CreateShip(ShipType.Submarine, _submarineCoordinates);
+            assaultShip = (SmallAssaultShip)factory.CreateShip(ShipType.SmallAssaultShip, _smallAssaultShipCoordinates);
 
-            _battleshipGrid = new BattleshipGrid.BattleshipGrid(new Fleet(_ships));
+            _battleshipGrid = new BattleshipGrid.BattleshipGrid(new Fleet(carrier, battleship, destroyer, submarine, assaultShip));
         }
 
         public void AttackAtCoordinate(int row, int column)

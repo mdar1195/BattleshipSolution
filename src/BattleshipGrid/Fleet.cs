@@ -15,7 +15,7 @@ namespace BattleshipGrid
         private Carrier _carrier;
         private Battleship _battleship;
         private Destroyer _destroyer;
-        private Destroyer _submarine;
+        private Submarine _submarine;
         private SmallAssaultShip _assaultShip;
 
         public Fleet() : base()
@@ -34,7 +34,7 @@ namespace BattleshipGrid
         {
             _destroyer = destroyer;
         }
-        public void SetSubmarine(Destroyer submarine)
+        public void SetSubmarine(Submarine submarine)
         {
             _submarine = submarine;
         }
@@ -42,22 +42,13 @@ namespace BattleshipGrid
         {
             _assaultShip = smallAssaultShip;
         }
-        public Fleet(Carrier carrier, Battleship battleship, Destroyer destroyer, Destroyer submarine, SmallAssaultShip assaultShip)
+        public Fleet(Carrier carrier, Battleship battleship, Destroyer destroyer, Submarine submarine, SmallAssaultShip assaultShip)
         {
             _carrier = carrier;
             _battleship = battleship;
             _destroyer = destroyer;
             _submarine = submarine;
             _assaultShip = assaultShip;
-        }
-
-        public Fleet(Ship[] ships)
-        {
-            _carrier = (Carrier) ships[0];
-            _battleship = (Battleship) ships[1];
-            _destroyer = (Destroyer) ships[2];
-            _submarine = (Destroyer) ships[3];
-            _assaultShip = (SmallAssaultShip) ships[4];
         }
 
         // Returns true if all ships have sank (complete fleet was hit) and false otherwise

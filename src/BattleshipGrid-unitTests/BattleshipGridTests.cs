@@ -1,6 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using BattleshipGrid;
+using System.Collections.Generic;
 
 namespace BattleshipGrid_unitTests
 {
@@ -13,6 +14,18 @@ namespace BattleshipGrid_unitTests
         private BattleshipGrid.BattleshipGrid _subjectUnderTest;
 
         private Mock<Fleet> _fleetMock;
+        private Mock<Carrier> _carrierMock;
+        private Mock<Battleship> _battleshipMock;
+        private Mock<Destroyer> _destroyerMock;
+        private Mock<Submarine> _submarineMock;
+        private Mock<SmallAssaultShip> _assaultSipMock;
+
+        private Mock<List<Coordinate>> _carrierCoordinatesMock;
+        private Mock<List<Coordinate>> _battleshipCoordinatesMock;
+        private Mock<List<Coordinate>> _destroyerCoordinatesMock;
+        private Mock<List<Coordinate>> _submarineCoordinatesMock;
+        private Mock<List<Coordinate>> _assaultShipCoordinatesMock;
+
         private Coordinate _pointOfAttack;
 
         #region Additional test attributes
@@ -21,7 +34,20 @@ namespace BattleshipGrid_unitTests
         [TestInitialize()]
         public void TestInitialize()
         {
-            _fleetMock = new Mock<Fleet>();
+            _carrierCoordinatesMock = new Mock<List<Coordinate>>(5);
+            _battleshipCoordinatesMock = new Mock<List<Coordinate>>(4);
+            _destroyerCoordinatesMock = new Mock<List<Coordinate>>(3);
+            _submarineCoordinatesMock = new Mock<List<Coordinate>>(3);
+            _assaultShipCoordinatesMock = new Mock<List<Coordinate>>(1);
+
+            _carrierMock = new Mock<Carrier>(_carrierCoordinatesMock.Object);
+            _battleshipMock = new Mock<Battleship>(_battleshipCoordinatesMock.Object);
+            _destroyerMock = new Mock<Destroyer>(_destroyerCoordinatesMock.Object);
+            _submarineMock = new Mock<Submarine>(_submarineCoordinatesMock.Object);
+            _assaultSipMock = new Mock<SmallAssaultShip>(_assaultShipCoordinatesMock.Object);
+            _fleetMock = new Mock<Fleet>(_carrierMock.Object, _battleshipMock.Object, _destroyerMock.Object, 
+                _submarineMock.Object, _assaultSipMock.Object);
+
             _pointOfAttack = new Coordinate(1, 1);
 
             _subjectUnderTest = new BattleshipGrid.BattleshipGrid(_fleetMock.Object);
@@ -31,6 +57,17 @@ namespace BattleshipGrid_unitTests
         [TestCleanup()]
         public void TestCleanup() 
         {
+            _carrierCoordinatesMock = null;
+            _battleshipCoordinatesMock = null;
+            _destroyerCoordinatesMock = null;
+            _submarineCoordinatesMock = null;
+            _assaultShipCoordinatesMock = null;
+
+            _carrierMock = null;
+            _battleshipMock = null;
+            _destroyerMock = null;
+            _submarineMock = null;
+            _assaultSipMock = null;
             _fleetMock = null;
             _subjectUnderTest = null;
         }

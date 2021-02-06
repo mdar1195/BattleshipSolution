@@ -53,6 +53,7 @@
     <Compile Include="Ships\Ship.cs" />
     <Compile Include="Factory\ShipFactory.cs" />
     <Compile Include="Ships\SmallAssaultShip.cs" />
+    <Compile Include="Ships\Submarine.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

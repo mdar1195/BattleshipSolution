@@ -18,8 +18,9 @@ namespace BattleshipGrid.Factory
                 case ShipType.Battleship:
                     return new Battleship(coordinates);
                 case ShipType.Destroyer:
-                case ShipType.Submarine:
                     return new Destroyer(coordinates);
+                case ShipType.Submarine:
+                    return new Submarine(coordinates);
                 case ShipType.SmallAssaultShip:
                     return new SmallAssaultShip(coordinates);
                 default:

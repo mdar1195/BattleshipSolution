@@ -10,8 +10,6 @@ namespace Battleship_problem_consoleApp
         public Fleet _fleet;
         public void InitializeTheFleet()
         {
-            Ship[] ships = new Ship[5];
-
             List<Coordinate> carrierCoordinates = new List<Coordinate>(5);
             carrierCoordinates.Add(new Coordinate(1, 1));
             carrierCoordinates.Add(new Coordinate(1, 2));
@@ -38,19 +36,25 @@ namespace Battleship_problem_consoleApp
             List<Coordinate> smallAssaultShipCoordinates = new List<Coordinate>(1);
             smallAssaultShipCoordinates.Add(new Coordinate(8, 9));
 
-            ShipFactoryCreator factory = new ShipFactoryCreator();
-            ships[0] = (Ship)factory.CreateShip(ShipType.Carrier, carrierCoordinates);
-            Console.WriteLine("Created {0}", ships[0].GetType().Name);
-            ships[1] = (Ship)factory.CreateShip(ShipType.Battleship, battleshipCoordinates);
-            Console.WriteLine("Created {0}", ships[1].GetType().Name);
-            ships[2] = (Ship)factory.CreateShip(ShipType.Destroyer, destroyerCoordinates);
-            Console.WriteLine("Created {0}", ships[2].GetType().Name);
-            ships[3] = (Ship)factory.CreateShip(ShipType.Submarine, submarineCoordinates);
-            Console.WriteLine("Created {0}", ships[3].GetType().Name);
-            ships[4] = (Ship)factory.CreateShip(ShipType.SmallAssaultShip, smallAssaultShipCoordinates);
-            Console.WriteLine("Created {0}", ships[4].GetType().Name);
+            Carrier carrier;
+            Battleship battleship;
+            Destroyer destroyer;
+            Submarine submarine;
+            SmallAssaultShip assaultShip;
 
-            _fleet = new BattleshipGrid.Fleet(ships);
+            ShipFactoryCreator factory = new ShipFactoryCreator();
+            carrier = (Carrier)factory.CreateShip(ShipType.Carrier, carrierCoordinates);
+            Console.WriteLine("Created {0}", carrier.GetType().Name);
+            battleship = (Battleship)factory.CreateShip(ShipType.Battleship, battleshipCoordinates);
+            Console.WriteLine("Created {0}", battleship.GetType().Name);
+            destroyer = (Destroyer)factory.CreateShip(ShipType.Destroyer, destroyerCoordinates);
+            Console.WriteLine("Created {0}", destroyer.GetType().Name);
+            submarine = (Submarine)factory.CreateShip(ShipType.Submarine, submarineCoordinates);
+            Console.WriteLine("Created {0}", submarine.GetType().Name);
+            assaultShip = (SmallAssaultShip)factory.CreateShip(ShipType.SmallAssaultShip, smallAssaultShipCoordinates);
+            Console.WriteLine("Created {0}", assaultShip.GetType().Name);
+
+            _fleet = new Fleet(carrier, battleship, destroyer, submarine, assaultShip);
 
         }
         static void Main(string[] args)
