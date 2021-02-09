@@ -1,16 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
+﻿
 using BattleshipGrid;
 using BattleshipGrid.Factory;
+using System.Collections.Generic;
+using System.Windows;
+using System.Windows.Controls;
+using Battleship_WPFapp_DX.Model;
+using System.Windows.Input;
+using DevExpress.Mvvm;
 
-namespace Battleship_WPFapp_DX
+namespace Battleship_WPFapp_DX.ViewModel
 {
-    class Battlefield
+    class BattlefieldViewModel
     {
         private const string CARRIER_CHAR = "🚢";
         private const string BATTLESHIP_CHAR = "🛳";
@@ -21,14 +21,6 @@ namespace Battleship_WPFapp_DX
         private const string TARGET_HIT_CHAR = "🎯";
         private const string TARGET_MISSED_CHAR = "✖️";
 
-        private const string CARRIER_PLACEHOLDER_LABEL = "carrier_placeholder";
-        private const string BATTLESHIP_PLACEHOLDER_LABEL = "battleship_placeholder";
-        private const string DESTROYER_PLACEHOLDER_LABEL = "destroyer_placeholder";
-        private const string SUBMARINE_PLACEHOLDER_LABEL = "submarine_placeholder";
-        private const string ASSAULTSHIP_PLACEHOLDER_LABEL = "assault_ship_placeholder";
-
-        private Grid _battlefieldGrid;
-        private Canvas _legendCanvas;
         private List<Coordinate> _carrierCoordinates = new List<Coordinate>(5);
         private List<Coordinate> _battleshipCoordinates = new List<Coordinate>(4);
         private List<Coordinate> _destroyerCoordinates = new List<Coordinate>(3);
@@ -36,18 +28,60 @@ namespace Battleship_WPFapp_DX
         private List<Coordinate> _smallAssaultShipCoordinates = new List<Coordinate>(1);
 
         private BattleshipGrid.BattleshipGrid _battleshipGrid;
-#region
+
+        private Grid _battlefieldGrid;
+
+        private ICommand _clickCommand;
+        public ICommand ClickCommand
+        {
+            get
+            {
+                return _clickCommand ?? (_clickCommand = new CommandHandler(AttackAtCoordinate, () => true));
+            }
+        }
+
+        private void AttackAtCoordinate(object parameter)
+        {
+            Button _btn = parameter as Button;
+
+            int row = (int)_btn.GetValue(Grid.RowProperty);
+            int column = (int)_btn.GetValue(Grid.ColumnProperty);
+
+            AttackAtCoordinate1(row, column);
+        }
+        public BattlefieldViewModel(Grid battlefieldGrid)
+        {
+            _battlefieldGrid = battlefieldGrid;
+        }
+        public Legend Legend
+        {
+            get;
+            set;
+        }
         private UIElement GetElementInGridPosition(int column, int row)
         {
+            if (_battlefieldGrid == null)
+                return null;
             foreach (UIElement element in _battlefieldGrid.Children)
             {
                 if (Grid.GetColumn(element) == column && Grid.GetRow(element) == row)
                     return element;
             }
-
             return null;
         }
-        private void AddACarrier()
+        private void LoadLegend()
+        {
+            Legend legendCharacters = new Legend();
+
+            legendCharacters.CarrierCharacter = CARRIER_CHAR;
+            legendCharacters.BattleshipCharacter = BATTLESHIP_CHAR;
+            legendCharacters.DestroyerCharacter = DESTROYER_CHAR;
+            legendCharacters.SubmarineCharacter = SUBMARINE_CHAR;
+            legendCharacters.SmallAssaultShipCharacter = ASSAULT_SHIP_CHAR;
+
+            Legend = legendCharacters;
+        }
+        private void AddACarrierToUi()
         {
             Button btn = (Button)GetElementInGridPosition(1, 1);
             btn.Content = CARRIER_CHAR;
@@ -60,7 +94,7 @@ namespace Battleship_WPFapp_DX
             btn = (Button)GetElementInGridPosition(5, 1);
             btn.Content = CARRIER_CHAR;
         }
-        private void AddABattelship()
+        private void AddABattelshipToUi()
         {
             Button btn = (Button)GetElementInGridPosition(7, 1);
             btn.Content = BATTLESHIP_CHAR;
@@ -71,7 +105,7 @@ namespace Battleship_WPFapp_DX
             btn = (Button)GetElementInGridPosition(7, 4);
             btn.Content = BATTLESHIP_CHAR;
         }
-        private void AddADestroyer()
+        private void AddADestroyerToUi()
         {
             Button btn = (Button)GetElementInGridPosition(2, 5);
             btn.Content = DESTROYER_CHAR;
@@ -80,7 +114,7 @@ namespace Battleship_WPFapp_DX
             btn = (Button)GetElementInGridPosition(4, 5);
             btn.Content = DESTROYER_CHAR;
         }
-        private void AddASubmarine()
+        private void AddASubmarineToUi()
         {
             Button btn = (Button)GetElementInGridPosition(5, 7);
             btn.Content = SUBMARINE_CHAR;
@@ -89,12 +123,12 @@ namespace Battleship_WPFapp_DX
             btn = (Button)GetElementInGridPosition(5, 9);
             btn.Content = SUBMARINE_CHAR;
         }
-        private void AddASmallAssaultShip()
+        private void AddASmallAssaultShipToUi()
         {
             Button btn = (Button)GetElementInGridPosition(9, 8);
             btn.Content = ASSAULT_SHIP_CHAR;
         }
-        private void InitializeCoordinates()
+        private void GetShipCoordinates()
         {
             foreach (UIElement element in _battlefieldGrid.Children)
             {
@@ -130,64 +164,22 @@ namespace Battleship_WPFapp_DX
             }
 
         }
-        #endregion
-        public Battlefield(Grid battlefieldGrid, Canvas legendCanvas)
-        {
-            _battlefieldGrid = battlefieldGrid;
-            _legendCanvas = legendCanvas;
-        }
 
-        public void InitializeTheLegend()
-        {
-            if (_legendCanvas == null)
-                return;
-            foreach (UIElement element in _legendCanvas.Children)
-            {
-                if (element is Label)
-                {
-                    Label label = (Label)element;
-                    if (label.Content == null)
-                    {
-                        StringBuilder s = new StringBuilder();
-                        if (label.Name.Equals(CARRIER_PLACEHOLDER_LABEL))
-                        {
-                            s.Append(CARRIER_CHAR);
-                        }
-                        else if (label.Name.Equals(BATTLESHIP_PLACEHOLDER_LABEL))
-                        {
-                            s.Append(BATTLESHIP_CHAR);
-                        }
-                        else if (label.Name.Equals(DESTROYER_PLACEHOLDER_LABEL))
-                        {
-                            s.Append(DESTROYER_CHAR);
-                        }
-                        else if (label.Name.Equals(SUBMARINE_PLACEHOLDER_LABEL))
-                        {
-                            s.Append(SUBMARINE_CHAR);
-                        }
-                        else if (label.Name.Equals(ASSAULTSHIP_PLACEHOLDER_LABEL))
-                        {
-                            s.Append(ASSAULT_SHIP_CHAR);
-                        }
-                        label.Content = s.ToString();
-                    }
-                }
-            }
-        }
-
-        public void AddTheFleetToTheBattlefield()
+        public void LoadBattleshipGame()
         {
             //this will populate the UI Grid
-            AddACarrier();
-            AddABattelship();
-            AddADestroyer();
-            AddASubmarine();
-            AddASmallAssaultShip();
-        }
+            AddACarrierToUi();
+            AddABattelshipToUi();
+            AddADestroyerToUi();
+            AddASubmarineToUi();
+            AddASmallAssaultShipToUi();
 
-        public void InitializeBattleshipGrid()
+            InitializeBattlefieldObject();
+            LoadLegend();
+        }
+        public void InitializeBattlefieldObject()
         {
-            InitializeCoordinates();
+            GetShipCoordinates();
             Carrier carrier;
             Battleship battleship;
             Destroyer destroyer;
@@ -203,8 +195,7 @@ namespace Battleship_WPFapp_DX
 
             _battleshipGrid = new BattleshipGrid.BattleshipGrid(new Fleet(carrier, battleship, destroyer, submarine, assaultShip));
         }
-
-        public void AttackAtCoordinate(int row, int column)
+        public void AttackAtCoordinate1(int row, int column)
         {
             ResultOfAttack result = _battleshipGrid.Attack(new Coordinate(row, column));
             Button btn = (Button)GetElementInGridPosition(column, row);

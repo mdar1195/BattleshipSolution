@@ -11,6 +11,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Battleship_WPFapp_DX.ViewModel;
 using DevExpress.Xpf.Core;
 
 namespace Battleship_WPFapp_DX
@@ -20,24 +21,18 @@ namespace Battleship_WPFapp_DX
     /// </summary>
     public partial class MainWindow : ThemedWindow
     {
-        Battlefield _battlefield;
         public MainWindow()
         {
             InitializeComponent();
-            _battlefield = new Battlefield(BattlefieldGrid, LegendCanvas);
-            _battlefield.AddTheFleetToTheBattlefield();
-            _battlefield.InitializeBattleshipGrid();
-            _battlefield.InitializeTheLegend();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void BattlefieldViewControl_Loaded(object sender, RoutedEventArgs e)
         {
-            Button _btn = sender as Button;
+            BattlefieldViewModel battlefieldViewModelObject =
+               new BattlefieldViewModel(BattlefieldViewControl.BattlefieldGrid);
+            battlefieldViewModelObject.LoadBattleshipGame();
 
-            int row = (int)_btn.GetValue(Grid.RowProperty);
-            int column = (int)_btn.GetValue(Grid.ColumnProperty);
-
-            _battlefield.AttackAtCoordinate(row, column);
+            BattlefieldViewControl.DataContext = battlefieldViewModelObject;
         }
     }
 }
