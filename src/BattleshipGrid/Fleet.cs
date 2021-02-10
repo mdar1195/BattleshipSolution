@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 namespace BattleshipGrid
 {
     public class Fleet
@@ -26,7 +21,6 @@ namespace BattleshipGrid
             _submarine = submarine;
             _assaultShip = assaultShip;
         }
-
         // Returns true if all ships have sank (complete fleet was hit) and false otherwise
         public virtual bool IsGameOver()
         {
@@ -39,7 +33,6 @@ namespace BattleshipGrid
 
             return false;
         }
-
         // Returns true if one of the ships was hit and false if none of the ships was hit
         public virtual bool IsHit(Coordinate point)
         {
@@ -51,7 +44,6 @@ namespace BattleshipGrid
             }
             return false;
         }
-
         public virtual bool DidSank(Coordinate point)
         {
             if (_carrier.DidSank(point) || _battleship.DidSank(point)

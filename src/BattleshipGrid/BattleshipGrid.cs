@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 namespace BattleshipGrid
 {
     public enum ResultOfAttack
@@ -22,7 +17,6 @@ namespace BattleshipGrid
         {
             _fleet = fleet;
         }
-
         public ResultOfAttack Attack(Coordinate pointOfAttack)
         {
             ResultOfAttack returnValue = ResultOfAttack.None;

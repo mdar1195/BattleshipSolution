@@ -55,7 +55,6 @@ namespace Battleship_problem_consoleApp
             Console.WriteLine("Created {0}", assaultShip.GetType().Name);
 
             _fleet = new Fleet(carrier, battleship, destroyer, submarine, assaultShip);
-
         }
         static void Main(string[] args)
         {
@@ -64,9 +63,9 @@ namespace Battleship_problem_consoleApp
             BattleshipGrid.BattleshipGrid battleshipGrid = new BattleshipGrid.BattleshipGrid(p._fleet);
 
             Coordinate hitPoint = new Coordinate(7, 5);
-            Console.WriteLine("IsHit(7,5) " + battleshipGrid.Attack(hitPoint));
+            Console.WriteLine("Attack(7,5) " + battleshipGrid.Attack(hitPoint));
             hitPoint = new Coordinate(8, 9);
-            Console.WriteLine("IsHit(8,9) " + battleshipGrid.Attack(hitPoint));
+            Console.WriteLine("Attack(8,9) " + battleshipGrid.Attack(hitPoint));
         }
     }
 }

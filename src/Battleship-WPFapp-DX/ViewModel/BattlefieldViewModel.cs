@@ -1,12 +1,9 @@
-﻿
-using BattleshipGrid;
-using BattleshipGrid.Factory;
+﻿using BattleshipGrid;
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 using Battleship_WPFapp_DX.Model;
 using System.Windows.Input;
-using DevExpress.Mvvm;
 
 namespace Battleship_WPFapp_DX.ViewModel
 {

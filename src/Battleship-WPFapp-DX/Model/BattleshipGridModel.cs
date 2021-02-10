@@ -1,7 +1,6 @@
 ﻿using BattleshipGrid;
 using BattleshipGrid.Factory;
 using System.Collections.Generic;
-using System.ComponentModel;
 
 namespace Battleship_WPFapp_DX.Model
 {

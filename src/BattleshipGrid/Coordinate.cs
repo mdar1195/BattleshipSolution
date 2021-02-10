@@ -1,5 +1,4 @@
-﻿using System.Text;
-
+﻿
 namespace BattleshipGrid
 {
     public class Coordinate
@@ -17,7 +16,6 @@ namespace BattleshipGrid
             Latitude = latitude;
             Longitude = longitude;
         }
-
         public bool Equals(Coordinate obj)
         {
             return obj.Latitude == Latitude && obj.Longitude == Longitude;

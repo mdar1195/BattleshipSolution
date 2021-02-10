@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel;
 
 namespace Battleship_WPFapp_DX.Model
 {
@@ -15,19 +10,27 @@ namespace Battleship_WPFapp_DX.Model
         string _submarineCharacter;
         string _smallAssaultShipCharacter;
 
-        public string CarrierCharacter {
-            get { return _carrierCharacter; }
-            set {
+        public string CarrierCharacter 
+        {
+            get
+            {
+                return _carrierCharacter;
+            }
+            set
+            {
                 if (_carrierCharacter != value)
                 {
                     _carrierCharacter = value;
                     OnPropertyChanged("CarrierCharacter");
                 }
-                }
+            }
         }
         public string BattleshipCharacter
         {
-            get { return _battleshipCharacter; }
+            get
+            {
+                return _battleshipCharacter;
+            }
             set
             {
                 if (_battleshipCharacter != value)
@@ -39,7 +42,10 @@ namespace Battleship_WPFapp_DX.Model
         }
         public string DestroyerCharacter
         {
-            get { return _destroyerCharacter; }
+            get
+            {
+                return _destroyerCharacter;
+            }
             set
             {
                 if (_destroyerCharacter != value)
@@ -51,7 +57,10 @@ namespace Battleship_WPFapp_DX.Model
         }
         public string SubmarineCharacter
         {
-            get { return _submarineCharacter; }
+            get
+            {
+                return _submarineCharacter;
+            }
             set
             {
                 if (_submarineCharacter != value)
@@ -63,7 +72,10 @@ namespace Battleship_WPFapp_DX.Model
         }
         public string SmallAssaultShipCharacter
         {
-            get { return _smallAssaultShipCharacter; }
+            get
+            {
+                return _smallAssaultShipCharacter;
+            }
             set
             {
                 if (_smallAssaultShipCharacter != value)
@@ -73,7 +85,6 @@ namespace Battleship_WPFapp_DX.Model
                 }
             }
         }
-
         public event PropertyChangedEventHandler PropertyChanged;
         private void OnPropertyChanged(string property)
         {
