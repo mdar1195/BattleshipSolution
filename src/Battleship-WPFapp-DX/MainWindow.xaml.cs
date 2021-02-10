@@ -16,9 +16,6 @@ using DevExpress.Xpf.Core;
 
 namespace Battleship_WPFapp_DX
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : ThemedWindow
     {
         public MainWindow()

@@ -9,11 +9,11 @@ namespace Battleship_WPFapp_DX.Model
 {
     class Legend : INotifyPropertyChanged
     {
-        String _carrierCharacter;
-        String _battleshipCharacter;
-        String _destroyerCharacter;
-        String _submarineCharacter;
-        String _smallAssaultShipCharacter;
+        string _carrierCharacter;
+        string _battleshipCharacter;
+        string _destroyerCharacter;
+        string _submarineCharacter;
+        string _smallAssaultShipCharacter;
 
         public string CarrierCharacter {
             get { return _carrierCharacter; }

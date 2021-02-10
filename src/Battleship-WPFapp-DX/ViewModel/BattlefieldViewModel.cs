@@ -27,9 +27,9 @@ namespace Battleship_WPFapp_DX.ViewModel
         private List<Coordinate> _submarineCoordinates = new List<Coordinate>(3);
         private List<Coordinate> _smallAssaultShipCoordinates = new List<Coordinate>(1);
 
-        private BattleshipGrid.BattleshipGrid _battleshipGrid;
+        private BattleshipGridModel _battleshipGridModel;
 
-        private Grid _battlefieldGrid;
+        private Grid _battlefieldUiGrid;
 
         private ICommand _clickCommand;
         public ICommand ClickCommand
@@ -42,16 +42,38 @@ namespace Battleship_WPFapp_DX.ViewModel
 
         private void AttackAtCoordinate(object parameter)
         {
-            Button _btn = parameter as Button;
+            Button button = parameter as Button;
 
-            int row = (int)_btn.GetValue(Grid.RowProperty);
-            int column = (int)_btn.GetValue(Grid.ColumnProperty);
+            int row = (int)button.GetValue(Grid.RowProperty);
+            int column = (int)button.GetValue(Grid.ColumnProperty);
 
-            AttackAtCoordinate1(row, column);
+            ResultOfAttack result = _battleshipGridModel.AttackAtCoordinate(row, column);
+
+            if (result == ResultOfAttack.Hit)
+            {
+                MessageBox.Show("It's a hit");
+                button.Content = TARGET_HIT_CHAR;
+            }
+            else if (result == ResultOfAttack.Sank)
+            {
+                MessageBox.Show("It sank");
+                button.Content = TARGET_HIT_CHAR;
+            }
+            else if (result == ResultOfAttack.GameOver)
+            {
+                MessageBox.Show("It's game over");
+                button.Content = TARGET_HIT_CHAR;
+            }
+            else if (result == ResultOfAttack.Miss)
+            {
+                MessageBox.Show("It's a miss");
+                button.Content = TARGET_MISSED_CHAR;
+            }
+            button.IsEnabled = false;
         }
         public BattlefieldViewModel(Grid battlefieldGrid)
         {
-            _battlefieldGrid = battlefieldGrid;
+            _battlefieldUiGrid = battlefieldGrid;
         }
         public Legend Legend
         {
@@ -60,9 +82,9 @@ namespace Battleship_WPFapp_DX.ViewModel
         }
         private UIElement GetElementInGridPosition(int column, int row)
         {
-            if (_battlefieldGrid == null)
+            if (_battlefieldUiGrid == null)
                 return null;
-            foreach (UIElement element in _battlefieldGrid.Children)
+            foreach (UIElement element in _battlefieldUiGrid.Children)
             {
                 if (Grid.GetColumn(element) == column && Grid.GetRow(element) == row)
                     return element;
@@ -128,9 +150,9 @@ namespace Battleship_WPFapp_DX.ViewModel
             Button btn = (Button)GetElementInGridPosition(9, 8);
             btn.Content = ASSAULT_SHIP_CHAR;
         }
-        private void GetShipCoordinates()
+        private void GetShipCoordinatesFromUi()
         {
-            foreach (UIElement element in _battlefieldGrid.Children)
+            foreach (UIElement element in _battlefieldUiGrid.Children)
             {
                 int row = Grid.GetRow(element);
                 int column = Grid.GetColumn(element);
@@ -162,9 +184,12 @@ namespace Battleship_WPFapp_DX.ViewModel
                     }
                 }
             }
-
         }
-
+        private void InitializeBattleshipGridModel()
+        {
+            GetShipCoordinatesFromUi();
+            _battleshipGridModel = new BattleshipGridModel(_carrierCoordinates, _battleshipCoordinates, _destroyerCoordinates, _submarineCoordinates, _smallAssaultShipCoordinates);
+        }
         public void LoadBattleshipGame()
         {
             //this will populate the UI Grid
@@ -174,52 +199,9 @@ namespace Battleship_WPFapp_DX.ViewModel
             AddASubmarineToUi();
             AddASmallAssaultShipToUi();
 
-            InitializeBattlefieldObject();
+            InitializeBattleshipGridModel();
             LoadLegend();
         }
-        public void InitializeBattlefieldObject()
-        {
-            GetShipCoordinates();
-            Carrier carrier;
-            Battleship battleship;
-            Destroyer destroyer;
-            Submarine submarine;
-            SmallAssaultShip assaultShip;
-
-            ShipFactoryCreator factory = new ShipFactoryCreator();
-            carrier = (Carrier)factory.CreateShip(ShipType.Carrier, _carrierCoordinates);
-            battleship = (Battleship)factory.CreateShip(ShipType.Battleship, _battleshipCoordinates);
-            destroyer = (Destroyer)factory.CreateShip(ShipType.Destroyer, _destroyerCoordinates);
-            submarine = (Submarine)factory.CreateShip(ShipType.Submarine, _submarineCoordinates);
-            assaultShip = (SmallAssaultShip)factory.CreateShip(ShipType.SmallAssaultShip, _smallAssaultShipCoordinates);
-
-            _battleshipGrid = new BattleshipGrid.BattleshipGrid(new Fleet(carrier, battleship, destroyer, submarine, assaultShip));
-        }
-        public void AttackAtCoordinate1(int row, int column)
-        {
-            ResultOfAttack result = _battleshipGrid.Attack(new Coordinate(row, column));
-            Button btn = (Button)GetElementInGridPosition(column, row);
-            if (result == ResultOfAttack.Hit)
-            {
-                MessageBox.Show("It's a hit");
-                btn.Content = TARGET_HIT_CHAR;
-            }
-            else if (result == ResultOfAttack.Sank)
-            {
-                MessageBox.Show("It sank");
-                btn.Content = TARGET_HIT_CHAR;
-            }
-            else if (result == ResultOfAttack.GameOver)
-            {
-                MessageBox.Show("It's game over");
-                btn.Content = TARGET_HIT_CHAR;
-            }
-            else if (result == ResultOfAttack.Miss)
-            {
-                MessageBox.Show("It's a miss");
-                btn.Content = TARGET_MISSED_CHAR;
-            }
-            btn.IsEnabled = false;
-        }
+        
     }
 }

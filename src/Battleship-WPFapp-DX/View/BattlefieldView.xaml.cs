@@ -14,9 +14,6 @@ using System.Windows.Shapes;
 
 namespace Battleship_WPFapp_DX.View
 {
-    /// <summary>
-    /// Interaction logic for BattlefieldView.xaml
-    /// </summary>
     public partial class BattlefieldView : UserControl
     {
         public BattlefieldView()
