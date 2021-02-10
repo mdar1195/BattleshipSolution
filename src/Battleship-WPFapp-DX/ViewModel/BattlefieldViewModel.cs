@@ -28,16 +28,16 @@ namespace Battleship_WPFapp_DX.ViewModel
 
         private Grid _battlefieldUiGrid;
 
-        private ICommand _clickCommand;
-        public ICommand ClickCommand
+        private ICommand _attackCommand;
+        public ICommand AttackCommand
         {
             get
             {
-                return _clickCommand ?? (_clickCommand = new CommandHandler(AttackAtCoordinate, () => true));
+                return _attackCommand ?? (_attackCommand = new CommandHandler(Attack, () => true));
             }
         }
 
-        private void AttackAtCoordinate(object parameter)
+        private void Attack(object parameter)
         {
             Button button = parameter as Button;
 
@@ -45,34 +45,39 @@ namespace Battleship_WPFapp_DX.ViewModel
             int column = (int)button.GetValue(Grid.ColumnProperty);
 
             ResultOfAttack result = _battleshipGridModel.AttackAtCoordinate(row, column);
+            button.IsEnabled = false;
 
             if (result == ResultOfAttack.Hit)
             {
-                MessageBox.Show("It's a hit");
                 button.Content = TARGET_HIT_CHAR;
+                MessageBox.Show("It's a hit"); 
             }
             else if (result == ResultOfAttack.Sank)
             {
-                MessageBox.Show("It sank");
                 button.Content = TARGET_HIT_CHAR;
+                MessageBox.Show("It sank");
             }
             else if (result == ResultOfAttack.GameOver)
             {
-                MessageBox.Show("It's game over");
                 button.Content = TARGET_HIT_CHAR;
+                MessageBox.Show("It's game over");
             }
             else if (result == ResultOfAttack.Miss)
             {
-                MessageBox.Show("It's a miss");
                 button.Content = TARGET_MISSED_CHAR;
+                MessageBox.Show("It's a miss");
             }
-            button.IsEnabled = false;
         }
         public BattlefieldViewModel(Grid battlefieldGrid)
         {
             _battlefieldUiGrid = battlefieldGrid;
         }
         public LegendModel Legend
+        {
+            get;
+            set;
+        }
+        public BattleshipGridModel BattleshipGridModel
         {
             get;
             set;
@@ -186,6 +191,7 @@ namespace Battleship_WPFapp_DX.ViewModel
         {
             GetShipCoordinatesFromUi();
             _battleshipGridModel = new BattleshipGridModel(_carrierCoordinates, _battleshipCoordinates, _destroyerCoordinates, _submarineCoordinates, _smallAssaultShipCoordinates);
+            BattleshipGridModel = _battleshipGridModel;
         }
         public void LoadBattleshipGame()
         {

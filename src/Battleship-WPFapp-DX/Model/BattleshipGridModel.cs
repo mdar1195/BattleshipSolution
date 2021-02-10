@@ -1,12 +1,36 @@
 ﻿using BattleshipGrid;
 using BattleshipGrid.Factory;
 using System.Collections.Generic;
+using System.ComponentModel;
 
 namespace Battleship_WPFapp_DX.Model
 {
-    class BattleshipGridModel
+    class BattleshipGridModel : INotifyPropertyChanged
     {
         private BattleshipGrid.BattleshipGrid _battleshipGrid;
+        private bool _isNotGameOver=true;
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        private void OnPropertyChanged(string property)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(property));
+        }
+
+        public bool IsNotGameOver
+        {
+            get
+            {
+                return _isNotGameOver;
+            }
+            set
+            {
+                if (_isNotGameOver != value)
+                {
+                    _isNotGameOver = value;
+                    OnPropertyChanged("IsNotGameOver");
+                }
+            }
+        }
 
         public BattleshipGridModel(List<Coordinate> carrierCoordinates, List<Coordinate> battleshipCoordinates, 
             List<Coordinate> destroyerCoordinates, List<Coordinate> submarineCoordinates, List<Coordinate> smallAssaultShipCoordinates)
@@ -28,7 +52,9 @@ namespace Battleship_WPFapp_DX.Model
         }
         public ResultOfAttack AttackAtCoordinate(int row, int column)
         {
-            return _battleshipGrid.Attack(new Coordinate(row, column));       
+            ResultOfAttack result = _battleshipGrid.Attack(new Coordinate(row, column));
+            IsNotGameOver = result == ResultOfAttack.GameOver ? false : true;
+            return result;
         }
     }
 }
