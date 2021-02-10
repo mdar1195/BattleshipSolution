@@ -75,7 +75,7 @@ namespace Battleship_WPFapp_DX.ViewModel
         {
             _battlefieldUiGrid = battlefieldGrid;
         }
-        public Legend Legend
+        public LegendModel Legend
         {
             get;
             set;
@@ -93,7 +93,7 @@ namespace Battleship_WPFapp_DX.ViewModel
         }
         private void LoadLegend()
         {
-            Legend legendCharacters = new Legend();
+            LegendModel legendCharacters = new LegendModel();
 
             legendCharacters.CarrierCharacter = CARRIER_CHAR;
             legendCharacters.BattleshipCharacter = BATTLESHIP_CHAR;
@@ -201,7 +201,6 @@ namespace Battleship_WPFapp_DX.ViewModel
 
             InitializeBattleshipGridModel();
             LoadLegend();
-        }
-        
+        }  
     }
 }

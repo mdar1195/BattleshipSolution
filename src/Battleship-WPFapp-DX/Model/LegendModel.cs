@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Battleship_WPFapp_DX.Model
 {
-    class Legend : INotifyPropertyChanged
+    class LegendModel : INotifyPropertyChanged
     {
         string _carrierCharacter;
         string _battleshipCharacter;

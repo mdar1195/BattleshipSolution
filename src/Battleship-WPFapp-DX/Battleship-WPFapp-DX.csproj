@@ -84,7 +84,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Model\Legend.cs" />
+    <Compile Include="Model\LegendModel.cs" />
     <Compile Include="ViewModel\BattlefieldViewModel.cs" />
     <Compile Include="ViewModel\CommandHandler.cs" />
     <Compile Include="View\BattlefieldView.xaml.cs">
